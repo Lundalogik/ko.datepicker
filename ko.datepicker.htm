@@ -1,0 +1,78 @@
+﻿<!--
+ Fork of jQuery UI Datepicker
+ http://jqueryui.com
+
+ Copyright 2012 jQuery Foundation and other contributors
+ Released under the MIT license.
+ http://jquery.org/license
+ 
+ http://api.jqueryui.com/datepicker/
+ Depends:
+ $, ko, moment
+-->
+<!--
+    It will need something like:
+
+    <input type="text" data-bind="event:{keypress:keypress,keydown:keydown,focus:focus}, value:value, valueUpdate: 'afterkeydown'" />
+    
+    -->
+<div class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
+    style="position: absolute; z-index: 1; display: block" >
+    <div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all">
+        <a class="ui-datepicker-prev ui-corner-all" data-bind="click:prev,attr:{title:prevText}"><span
+            class="ui-icon ui-icon-circle-triangle-w" data-bind="text:prevText"></span></a>
+        <a class="ui-datepicker-next ui-corner-all" data-bind="click:next,attr:{title:nextText}"><span
+            class="ui-icon ui-icon-circle-triangle-e" data-bind="text:nextText"></span></a>
+        <div class="ui-datepicker-title">
+            <span class="ui-datepicker-month" data-bind="text:name()"></span>&nbsp;<span class="ui-datepicker-year"
+                data-bind="text:year()"></span></div>
+    </div>
+    <table class="ui-datepicker-calendar">
+        <thead>
+            <tr>
+                <!-- ko if: showWeek-->
+                <th class="ui-datepicker-week-col" data-bind="text:weekHeader"></th>
+                <!-- /ko -->
+                <!-- ko foreach: sevendays -->
+                <th data-bind="css:{'ui-datepicker-week-end':end}">
+                    <span data-bind="attr:{title:name}, text:minName"></span>
+                </th>
+                <!-- /ko -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ko foreach: weeks -->
+            <tr>
+                <!-- ko if: $parent.showWeek-->
+                <td class="ui-datepicker-week-col" data-bind="text:name">
+                </td>
+                <!-- /ko -->
+                <!-- ko foreach: days -->
+                <td data-bind="css:{
+                            'ui-datepicker-week-end': weekEnd,
+                            'ui-datepicker-today':today,
+                            'ui-datepicker-current-day': time==$parents[1].currentDate().getTime(),
+                            'ui-datepicker-days-cell-over': time==$parents[1].selectedDate().getTime()
+                           }">
+                    <!-- ko if: showSpaceOnly -->
+                    &nbsp;<!-- /ko -->
+                    <!-- ko ifnot: showSpaceOnly -->
+                    <!-- ko if: unselectable -->
+                    <span class="ui-state-default" data-bind="text:date"></span>
+                    <!-- /ko-->
+                    <!-- ko ifnot: unselectable -->
+                    <a tabindex="-1" class="ui-state-default" href="#" data-bind="text:date,
+                                               click:function(day,event){ $parents[1].selectDay(day, event); },
+                                               css:{
+                                                'ui-state-highlight':highlight,
+                                                'ui-state-active':time==$parents[1].currentDate().getTime(),
+                                                'ui-priority-secondary':otherMonth}">1</a>
+                    <!-- /ko-->
+                    <!-- /ko-->
+                </td>
+                <!-- /ko -->
+            </tr>
+            <!-- /ko -->
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,26 @@
+{
+	"name": "ko-datepicker",
+	"title": "Knockout js Datepicker",
+	"description": "A simplified datepicker built on knockoutjs and momentjs.",
+	"version": "0.1.0",
+	"homepage": "",
+	"author": {
+		"name": "jQuery Foundation and other contributors"
+	},
+	"maintainers": [
+		{
+			"name": "Oskar Gewalli",
+			"email": "oskar.gewalli@lundalogik.se",
+			"url": "http://gewalli.se"
+		}
+	],
+	"repository": {
+		"type": "git"
+	},
+	"licenses": [
+		{
+			"type": "MIT"
+		}
+	],
+	"keywords": []
+}
